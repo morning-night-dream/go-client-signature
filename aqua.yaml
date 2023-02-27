@@ -1,0 +1,13 @@
+# aqua - Declarative CLI Version Manager
+# https://aquaproj.github.io/
+registries:
+  - type: standard
+    ref: v3.137.0 # renovate: depName=aquaproj/aqua-registry
+  - name: local
+    type: local
+    path: registry.yaml
+packages:
+  - name: github.com/deepmap/oapi-codegen/cmd/oapi-codegen
+    registry: local
+    version: v1.12.4
+

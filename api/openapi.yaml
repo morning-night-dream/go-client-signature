@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: Go client signature
+  description: |-
+    This is the API documentation.
+  termsOfService: https://example.com
+  contact:
+    email: morning.night.dream@example.com
+  license:
+    name: MIT
+  version: 0.0.1
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: signature
+paths:
+  /key/go:
+    post:
+      tags:
+        - signature
+      summary: 公開鍵登録
+      description: 公開鍵登録
+      operationId: keyGo
+      requestBody:
+        required: true
+        description: サインインリクエストボディ
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publicKey:
+                  type: string
+                  description: 公開鍵
+                  format: base64
+              required:
+                - publicKey
+      responses:
+        '200':
+          description: 成功
+        '400':
+          description: Bad Request
+  /key/js:
+    post:
+      tags:
+        - signature
+      summary: 公開鍵登録
+      description: 公開鍵登録
+      operationId: keyJS
+      requestBody:
+        required: true
+        description: サインインリクエストボディ
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publicKey:
+                  type: string
+                  description: 公開鍵
+                  format: base64
+              required:
+                - publicKey
+      responses:
+        '200':
+          description: 成功
+        '400':
+          description: Bad Request
+  /sign:
+      get:
+        tags:
+          - signature
+        summary: 署名検証
+        description: 署名検証
+        operationId: sign
+        parameters:
+          - name: code
+            in: query
+            description: 署名付きコード
+            required: true
+            explode: true
+            schema:
+              type: string
+          - name: signature
+            in: query
+            description: 署名
+            required: true
+            explode: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: OK
+          '401':
+            description: Unauthorized
